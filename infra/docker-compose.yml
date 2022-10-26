@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  bookstore-database:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - bookstore-database:/var/lib/postgresql/data
+      - ./bookstore-database/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+volumes:
+    bookstore-database:
+      driver: local
