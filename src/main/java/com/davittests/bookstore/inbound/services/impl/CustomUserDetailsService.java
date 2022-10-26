@@ -1,5 +1,6 @@
-package com.davittests.bookstore.domain.services;
+package com.davittests.bookstore.inbound.services.impl;
 
+import com.davittests.bookstore.inbound.services.IAuthenticationFacade;
 import com.davittests.bookstore.outbound.models.BookstoreUser;
 import com.davittests.bookstore.outbound.repositories.BookstoreUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        final BookstoreUser bookstoreUser = userRepository.findByUsername(username);
+        final BookstoreUser bookstoreUser = userRepository.findByEmail(username);
         if (bookstoreUser == null) {
             throw new UsernameNotFoundException(username);
         }
-        UserDetails user = User.withUsername(bookstoreUser.getUsername())
+        UserDetails user = User.withUsername(bookstoreUser.getEmail())
                 .password(bookstoreUser.getPassword())
                 .authorities(bookstoreUser.getRole())
                 .build();

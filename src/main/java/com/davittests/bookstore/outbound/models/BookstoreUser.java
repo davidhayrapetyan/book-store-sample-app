@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Date;
 
 @Entity
 @Data
@@ -17,8 +18,14 @@ public class BookstoreUser {
     @Column(name = "id")
     private String id;
 
-    @Column(nullable = false, unique = true, name = "username")
-    private String username;
+    @Column(nullable = false, unique = true, name = "email")
+    private String email;
+
+    @Column(nullable = false, unique = true, name = "name")
+    private String name;
+
+    @Column(nullable = false, unique = true, name = "birth_date")
+    private Date birthdate;
 
     @Column(nullable = false, name = "password")
     private String password;

@@ -1,4 +1,4 @@
-package com.davittests.bookstore.domain.services;
+package com.davittests.bookstore.inbound.services;
 
 import org.springframework.security.core.Authentication;
 
